@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: telon-gateway-app
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,4 +39,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: telon-gateway-app/android/app/build/outputs/apk/release/app-release.apk
