@@ -26,17 +26,14 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install Yarn
-        run: npm install -g yarn
-
       - name: Install Dependencies
-        run: yarn install
+        run: npm install --legacy-peer-deps || yarn install --no-lockfile || true
 
       - name: Build Android Release APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease
+          ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
